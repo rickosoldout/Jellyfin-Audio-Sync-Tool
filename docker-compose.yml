@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  deluge:
+    image: lscr.io/linuxserver/deluge:latest
+    container_name: deluge
+    environment:
+      - PUID=1000               # Use `id -u` to get your user ID
+      - PGID=1000               # Use `id -g` to get your group ID
+      - TZ=Europe/London
+    volumes:
+      - /srv/media:/downloads           # <- Mount host folder to container
+      - /home/youruser/deluge-config:/config  # <- Config files stored on host
+    ports:

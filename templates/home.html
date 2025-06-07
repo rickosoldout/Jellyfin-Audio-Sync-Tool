@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Jellyfin Movies{% endblock %}
+
+{% block content %}
+<h1>Jellyfin Movies</h1>
+{% if movies %}
+    <ul>
+    {% for movie in movies %}
+        <li>
+            <img src="{{ movie.poster }}" alt="Poster" style="max-height:100px;vertical-align:middle;"/>
+            <strong>{{ movie.name }}</strong> ({{ movie.year }})
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No movies found on Jellyfin.</p>
+{% endif %}
+{% endblock %}

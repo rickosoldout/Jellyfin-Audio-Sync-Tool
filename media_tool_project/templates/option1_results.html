@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Search Results</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body class="bg-light">
+  <div class="container py-4">
+    <h2>Search Results for: "{{ keywords }}" (excluding "{{ exclude }}")</h2>
+
+    {% if torrents %}
+      <ul class="list-group">
+        {% for torrent in torrents %}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ torrent.name }} ({{ torrent.size }})
+            <form method="post" action="/option1/download/{{ torrent.id }}">
+              <button type="submit" class="btn btn-sm btn-success">Download & Inject</button>
+            </form>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No torrents found.</p>
+    {% endif %}
+
+    <a href="/option1" class="btn btn-link mt-3">Back to Search</a>
+  </div>
+</body>
+</html>
