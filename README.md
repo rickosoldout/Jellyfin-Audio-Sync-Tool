@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Jellyfin Audio Injector Tool
 
 Welcome to the **Jellyfin Audio Injector Tool**, a powerful and flexible application designed to enhance your Jellyfin media server experience by automating the search, download, and injection of foreign language audio tracks (such as Spanish, but adaptable to any language) into your existing movie and TV show files.
@@ -59,3 +60,7 @@ Thanks for checking out the project! Pull requests and issues are welcome.
 ---
 
 *Ricko Server*
+=======
+# Jellyfin-Audio-Sync-Tool
+Jellyfin Audio Injector: Automate finding, downloading &amp; syncing foreign audio tracks (like Spanish) into your Jellyfin media library with CLI &amp; web UI.
+>>>>>>> 72472265c70cddba224f19240fc39a093ff4f4eb
