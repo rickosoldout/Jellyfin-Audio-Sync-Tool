@@ -1,21 +1,17 @@
-from dotenv import load_dotenv
-load_dotenv()
-
 import os
 import time
 import shutil
 import subprocess
 import requests
-import json
 
-# CONFIG FROM .env FILE
-JELLYFIN_URL = os.getenv("JELLYFIN_URL")
-JELLYFIN_API_TOKEN = os.getenv("JELLYFIN_API_TOKEN")
-JACKETT_API_KEY = os.getenv("JACKETT_API_KEY")
-JACKETT_URL = os.getenv("JACKETT_URL")
-DELUGE_URL = os.getenv("DELUGE_URL")
-DELUGE_PASSWORD = os.getenv("DELUGE_PASSWORD")
-DELUGE_DOWNLOAD_FOLDER = os.getenv("DELUGE_DOWNLOAD_FOLDER")
+# CONFIG
+JELLYFIN_URL = "http://192.168.1.178:8096"
+JELLYFIN_API_TOKEN = "521425dc932b42e3a07b87dc0c80628b"
+JACKETT_API_KEY = "3vn6ers95tws1pj1ep448nhvsjqf56ac"
+JACKETT_URL = "http://localhost:9117/api/v2.0/indexers/all/results"
+DELUGE_URL = "http://localhost:8112/json"
+DELUGE_PASSWORD = "deluge"
+DELUGE_DOWNLOAD_FOLDER = "/path/to/deluge/downloads"
 
 LANGUAGE_KEYWORDS = {
     "ENG": ["english", "eng"],
@@ -67,11 +63,13 @@ def list_torrent_matches(query, exclude_keywords=[]):
         for result in results:
             title = result.get("Title", "").lower()
             if all(ex.lower() not in title for ex in exclude_keywords):
+                # Prevent duplicate magnet links
                 if not any(r["magnet"] == result["MagnetUri"] for r in all_results):
                     all_results.append({
                         "title": result["Title"],
                         "magnet": result["MagnetUri"]
                     })
+
     return all_results
 
 def option_search_and_download():
